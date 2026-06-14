@@ -106,6 +106,8 @@ html, body { overflow-x: hidden; }
 
   /* Misc */
   .trust { padding: 2rem 1.4rem; }
+  .trust-strip { padding: 1.5rem 1.4rem; gap: 1rem; }
+  .trust-strip .btn { margin-left: 0; width: 100%; justify-content: center; }
   .cta-band { padding: 2.4rem 1.6rem; }
   .to-top { right: 1rem; bottom: 1rem; }
   .page-hero { padding-bottom: 2.4rem; }

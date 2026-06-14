@@ -1044,6 +1044,32 @@ body.has-cursor-car,
 body.has-cursor-car a,
 body.has-cursor-car button { cursor: none; }
 
+/* ---------- Trust strip (compact horizontal Google rating) ---------- */
+.trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(0,102,177,.14), transparent 55%),
+    var(--c-bg-2);
+  border: 1px solid var(--c-line);
+  border-radius: 20px;
+  padding: 1.8rem 2.4rem;
+}
+.trust-strip__score {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--c-text);
+  letter-spacing: -.03em;
+}
+.trust-strip__mid { display: flex; flex-direction: column; gap: .25rem; }
+.trust-strip__stars { color: #f5b50a; font-size: 1.2rem; letter-spacing: .12em; }
+.trust-strip__count { font-family: var(--font-mono); font-size: .78rem; color: var(--c-text-mute); }
+.trust-strip .btn { margin-left: auto; }
+
 /* Utility */
 .center { text-align: center; }
 .mt-2 { margin-top: 2rem; }
