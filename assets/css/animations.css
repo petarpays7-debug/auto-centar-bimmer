@@ -23,11 +23,11 @@
 
 /* ---------- Hero: subtle cinematic zoom ---------- */
 @keyframes heroZoom {
-  from { transform: scale(1.12); }
-  to   { transform: scale(1.02); }
+  from { transform: scale(1.10); }
+  to   { transform: scale(1.01); }
 }
 .hero__media img {
-  animation: heroZoom 14s var(--ease) forwards;
+  animation: heroZoom 16s var(--ease) forwards;
 }
 
 /* ---------- Scroll cue pulse ---------- */

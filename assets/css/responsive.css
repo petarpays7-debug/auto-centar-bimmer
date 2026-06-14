@@ -5,8 +5,8 @@
 
 html, body { overflow-x: hidden; }
 
-/* ---- Brand text on wide screens ---- */
-@media (min-width: 1100px) {
+/* ---- Brand text: show alongside logo chip on desktop ---- */
+@media (min-width: 960px) {
   .brand__txt { display: inline-block; }
 }
 
@@ -120,9 +120,10 @@ html, body { overflow-x: hidden; }
   .vcard__body { padding: 1.1rem 1.2rem 1.3rem; }
 }
 
-/* ---------- Touch / coarse: hide custom cursor ---------- */
+/* ---------- Touch / coarse: hide custom cursor + tyre tracks ---------- */
 @media (hover: none), (pointer: coarse) {
-  .cursor-car { display: none !important; }
+  .cursor-car,
+  .tyre-track { display: none !important; }
   body.has-cursor-car,
   body.has-cursor-car a,
   body.has-cursor-car button { cursor: auto; }
@@ -136,6 +137,7 @@ html, body { overflow-x: hidden; }
     transition-duration: .001ms !important;
   }
   .hero__media img { transform: none; }
-  .cursor-car { display: none !important; }
+  .cursor-car,
+  .tyre-track { display: none !important; }
   .vcard__media--ph { animation: none; }
 }

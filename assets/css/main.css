@@ -38,8 +38,8 @@
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
   /* Layout */
-  --maxw: 1760px;
-  --gutter: clamp(1.2rem, 4vw, 3.5rem);
+  --maxw: 1600px;
+  --gutter: clamp(1.2rem, 4vw, 3rem);
   --radius: 14px;
   --radius-sm: 9px;
   --header-h: 76px;
@@ -202,23 +202,33 @@ button:focus-visible {
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--c-line);
 }
-/* Logo — low-res source, so we keep it on a light chip and never upscale */
-.brand { display: inline-flex; align-items: center; gap: .7rem; }
+/* Logo — low-res source; white chip ensures legibility on any bg */
+.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
 .brand__chip {
-  background: #f3f5f8;
-  border-radius: 8px;
-  padding: 7px 10px;
+  background: #fff;
+  border-radius: 7px;
+  padding: 5px 9px;
   display: inline-flex;
   align-items: center;
-  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  box-shadow: 0 1px 6px rgba(0,0,0,.18);
+  transition: box-shadow .2s var(--ease);
 }
-.brand__chip img { height: 30px; width: auto; image-rendering: -webkit-optimize-contrast; }
+.brand:hover .brand__chip { box-shadow: 0 2px 10px rgba(0,0,0,.28); }
+.brand__chip img {
+  height: 28px;
+  width: auto;
+  max-width: 110px;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
 .brand__txt {
   display: none;
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -.01em;
-  font-size: 1.02rem;
+  font-size: 1rem;
+  color: var(--c-text);
 }
 .brand__txt span { color: var(--c-blue-lt); }
 
@@ -315,7 +325,7 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
 .hero__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center 45%;
   transform: scale(1.06);
   will-change: transform;
 }
@@ -324,9 +334,16 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(120% 80% at 70% 40%, transparent 0%, rgba(13,15,18,.35) 60%, rgba(13,15,18,.85) 100%),
-    linear-gradient(180deg, rgba(13,15,18,.6) 0%, rgba(13,15,18,.08) 30%, rgba(13,15,18,.55) 75%, rgba(13,15,18,.98) 100%),
-    linear-gradient(90deg, rgba(13,15,18,.82) 0%, rgba(13,15,18,.32) 50%, rgba(13,15,18,0) 100%);
+    linear-gradient(180deg,
+      rgba(13,15,18,.55) 0%,
+      rgba(13,15,18,.05) 28%,
+      rgba(13,15,18,.12) 55%,
+      rgba(13,15,18,.75) 78%,
+      rgba(13,15,18,.97) 100%),
+    linear-gradient(100deg,
+      rgba(13,15,18,.78) 0%,
+      rgba(13,15,18,.25) 45%,
+      rgba(13,15,18,0) 75%);
 }
 .hero__inner {
   position: relative;
@@ -439,9 +456,9 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
   transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
 }
 .vcard:hover {
-  transform: translateY(-4px);
-  border-color: rgba(47,147,224,.4);
-  box-shadow: 0 28px 60px -24px rgba(0,0,0,.7), 0 6px 18px -10px rgba(0,102,177,.25);
+  transform: translateY(-3px);
+  border-color: rgba(47,147,224,.32);
+  box-shadow: 0 20px 48px -20px rgba(0,0,0,.65), 0 4px 14px -8px rgba(0,102,177,.2);
 }
 .vcard__media {
   position: relative;
@@ -986,7 +1003,7 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
   top: 0; left: 0;
   z-index: 9999;
   pointer-events: none;
-  width: 29px; height: 72px;
+  width: 25px; height: 63px;
   transform-origin: 50% 50%;
   will-change: transform, opacity;
   opacity: 1;
@@ -995,25 +1012,31 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
 }
 body.has-cursor-car .cursor-car { display: block; }
 .cursor-car img {
-  width: 29px; height: 72px;
+  width: 25px; height: 63px;
   display: block;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,.6));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.55));
 }
 .cursor-car.is-hot {
-  filter: drop-shadow(0 0 10px rgba(47,147,224,.35));
+  filter: drop-shadow(0 0 8px rgba(47,147,224,.3));
 }
-/* Skid / dust trail — sitne čestice iza auta. */
-.skid {
+
+/* Dual tyre track marks — left & right rear wheel, suptilni */
+.tyre-track {
   position: fixed;
   top: 0; left: 0;
   z-index: 9998;
   pointer-events: none;
-  width: 4px; height: 4px;
-  margin-left: -2px; margin-top: -2px;
-  border-radius: 50%;
-  background: rgba(170,182,196,.55);
-  will-change: transform, opacity;
-  animation: skidFade .5s var(--ease) forwards;
+  width: 3px; height: 5px;
+  margin-left: -1.5px; margin-top: -2.5px;
+  border-radius: 2px;
+  background: rgba(100,115,130,.38);
+  will-change: opacity;
+  animation: tyreFade .52s var(--ease) forwards;
+}
+@keyframes tyreFade {
+  0%   { opacity: .45; }
+  60%  { opacity: .18; }
+  100% { opacity: 0; }
 }
 
 /* When custom cursor active, hide native cursor on interactive zones too */
