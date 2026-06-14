@@ -69,3 +69,95 @@
   .hero__inner > *,
   .scroll-cue .line { animation: none; opacity: 1; transform: none; }
 }
+
+/* =========================================================
+   PREMIUM FX — subtle micro-interactions (premium-fx.js)
+   ========================================================= */
+
+/* ── Image reveal — clip-path sweep left→right ─────────── */
+.img-reveal {
+  clip-path: inset(0 100% 0 0 round 14px);
+  opacity: 0;
+  transition:
+    clip-path .88s cubic-bezier(.22,.61,.36,1),
+    opacity    .60s ease;
+}
+.img-reveal.img-reveal-in {
+  clip-path: inset(0 0% 0 0 round 14px);
+  opacity: 1;
+}
+/* Mobile: simple fade-up instead of clip-path */
+@media (max-width: 860px) {
+  .img-reveal {
+    clip-path: none;
+    transform: translateY(18px);
+    transition:
+      opacity   .7s ease,
+      transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .img-reveal.img-reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Card tilt light reflection ──────────────────────────── */
+.vcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,.06) 0%,
+    transparent 58%
+  );
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.vcard.is-tilting::after { opacity: 1; }
+
+/* ── Eyebrow accent bar — animates in on sec-head reveal ─── */
+.sec-head.reveal .eyebrow::before {
+  width: 0;
+  transition: width .55s cubic-bezier(.22,.61,.36,1) .12s;
+}
+.sec-head.reveal.is-visible .eyebrow::before { width: 26px; }
+
+/* ── Button sweep — light shimmer on hover (one pass) ──── */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  top: -2px; bottom: -2px;
+  left: -120%;
+  width: 55%;
+  background: linear-gradient(
+    90deg,
+    transparent            0%,
+    rgba(255,255,255,.13) 50%,
+    transparent           100%
+  );
+  transform: skewX(-18deg);
+  transition: left .52s cubic-bezier(.22,.61,.36,1);
+  pointer-events: none;
+}
+.btn--primary:hover::before { left: 160%; }
+
+/* ── prefers-reduced-motion: disable all new FX ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .img-reveal {
+    clip-path: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .vcard::after { display: none; }
+  .sec-head.reveal .eyebrow::before { width: 26px; transition: none; }
+  .btn--primary::before { display: none; }
+}
