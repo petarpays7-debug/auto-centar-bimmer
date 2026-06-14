@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Auto Centar Bimmer">
+  <rect width="64" height="64" rx="14" fill="#0d0f12"/>
+  <circle cx="32" cy="28" r="15" fill="none" stroke="#2a2f37" stroke-width="2"/>
+  <!-- quadrant accent inspired by a roundel, neutral (not BMW official) -->
+  <path d="M32 13 A15 15 0 0 1 47 28 L32 28 Z" fill="#0066b1"/>
+  <path d="M17 28 A15 15 0 0 1 32 13 L32 28 Z" fill="#16498c"/>
+  <path d="M32 43 A15 15 0 0 1 17 28 L32 28 Z" fill="#e8edf3"/>
+  <path d="M47 28 A15 15 0 0 1 32 43 L32 28 Z" fill="#c7d0db"/>
+  <!-- M-stripe footer -->
+  <rect x="0" y="54" width="64" height="10" fill="#0066b1"/>
+  <rect x="0" y="54" width="42" height="10" fill="#16498c"/>
+  <rect x="0" y="54" width="20" height="10" fill="#9aa6b4"/>
+</svg>
