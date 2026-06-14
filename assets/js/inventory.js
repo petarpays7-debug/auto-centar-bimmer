@@ -41,7 +41,7 @@
       motor: "2.0d · 150 KS · Automatik",
       year: 2020, km: 149000, price: 23399,
       featured: true,
-      img: null,
+      img: IMG + "bmw-318d-g20-2020.jpg",
       alt: "BMW 318d automatik G20 (2020)",
       forParts: false
     },
@@ -81,7 +81,7 @@
       motor: "2.0d · 184 KS · Ručni",
       year: 2013, km: 262000, price: 11999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-320d-m-paket-2013.jpg",
       alt: "BMW 320d M paket (2013)",
       forParts: false
     },
@@ -111,7 +111,7 @@
       motor: "2.0d · 143 KS · Automatik",
       year: 2015, km: 242000, price: 11599,
       featured: true,
-      img: null,
+      img: IMG + "bmw-118d-automatik-m-paket-2015.jpg",
       alt: "BMW 118d automatik M paket (2015)",
       forParts: false
     },
@@ -121,7 +121,7 @@
       motor: "3.0d · 197 KS · Automatik",
       year: 2011, km: 274000, price: 10999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-525d-2011.jpg",
       alt: "BMW 525d automatik (2011)",
       forParts: false
     },
@@ -131,7 +131,7 @@
       motor: "2.0d · 184 KS · Ručni",
       year: 2011, km: 226000, price: 10999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-320d-m-paket-2011.jpg",
       alt: "BMW 320d M paket (2011)",
       forParts: false
     },
@@ -151,7 +151,7 @@
       motor: "2.0d · 143 KS · Ručni",
       year: 2017, km: 197000, price: 9999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-118d-2017.jpg",
       alt: "BMW 118d (2017)",
       forParts: false
     },
@@ -161,7 +161,7 @@
       motor: "2.0d · 143 KS · Ručni",
       year: 2015, km: 312000, price: 9999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-318d-2015.jpg",
       alt: "BMW 318d (2015)",
       forParts: false
     },
@@ -171,7 +171,7 @@
       motor: "2.0d · 116 KS · Ručni",
       year: 2016, km: 227000, price: 9599,
       featured: false,
-      img: null,
+      img: IMG + "bmw-118d-2016.jpg",
       alt: "BMW 118d (2016)",
       forParts: false
     },
@@ -181,7 +181,7 @@
       motor: "2.0d · 143 KS · Ručni",
       year: 2015, km: 252000, price: 9499,
       featured: false,
-      img: null,
+      img: IMG + "bmw-318d-touring-2015.jpg",
       alt: "BMW 318d Touring (2015)",
       forParts: false
     },
@@ -191,7 +191,7 @@
       motor: "2.0d · 177 KS · Ručni",
       year: 2013, km: 276000, price: 6999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-120d-2013-276k.jpg",
       alt: "BMW 120d (2013)",
       forParts: false
     },
@@ -201,7 +201,7 @@
       motor: "2.0d · 143 KS · Ručni",
       year: 2012, km: 264000, price: 5999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-318d-edition-2012.jpg",
       alt: "BMW 318d Edition (2012)",
       forParts: false
     },
@@ -211,7 +211,7 @@
       motor: "2.0d · 122 KS · Ručni",
       year: 2007, km: 227000, price: 3999,
       featured: false,
-      img: null,
+      img: IMG + "bmw-118d-2007.jpg",
       alt: "BMW 118d (2007)",
       forParts: false
     }
