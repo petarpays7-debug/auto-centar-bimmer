@@ -1,6 +1,6 @@
 /* =========================================================
    AUTO CENTAR BIMMER — responsive.css
-   Breakpoints: 1280 / 1080 / 860 / 600 / 380
+   Breakpoints: 1400 / 1200 / 1024 / 860 / 600 / 380
    ========================================================= */
 
 html, body { overflow-x: hidden; }
@@ -10,14 +10,22 @@ html, body { overflow-x: hidden; }
   .brand__txt { display: inline-block; }
 }
 
-/* ---------- Laptop / smaller desktop ---------- */
-@media (max-width: 1280px) {
+/* ---------- Wide: 4-col grids scale naturally ---------- */
+@media (max-width: 1400px) {
+  .vehicle-grid--feature { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---------- Laptop: drop to 3 cols ---------- */
+@media (max-width: 1200px) {
+  .vehicle-grid { grid-template-columns: repeat(3, 1fr); }
   .vehicle-grid--feature { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 1080px) {
+
+/* ---------- Smaller laptop ---------- */
+@media (max-width: 1024px) {
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .vehicle-grid,
-  .vehicle-grid--feature { grid-template-columns: repeat(2, 1fr); }
+  .vehicle-grid--feature { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .footer__top { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
 }
@@ -41,52 +49,75 @@ html, body { overflow-x: hidden; }
 
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  :root { --header-h: 66px; }
+  :root {
+    --header-h: 66px;
+    --gutter: 1.15rem;
+  }
 
-  /* Prozračniji mobilni razmaci */
-  .section { padding-block: clamp(3.5rem, 10vw, 6rem); }
-  .sec-head { margin-bottom: 2.4rem; }
+  /* More breathing room on mobile */
+  .section { padding-block: clamp(4rem, 11vw, 6.5rem); }
+  .sec-head { margin-bottom: 2.6rem; }
+  .sec-head h2 { font-size: clamp(1.75rem, 8vw, 2.4rem); }
 
-  .feature-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .feature-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+
+  /* Vehicle cards: single column, good card size */
   .vehicle-grid,
-  .vehicle-grid--feature { grid-template-columns: 1fr; gap: 1.6rem; }
+  .vehicle-grid--feature {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
 
-  /* Hero — prilagođen naslov */
-  .hero { min-height: 88vh; }
-  .hero h1 { max-width: 100%; font-size: clamp(2rem, 9vw, 3rem); }
-  .hero .lead { font-size: .95rem; max-width: 34ch; }
-  .hero__actions { flex-direction: column; align-items: stretch; gap: .8rem; }
-  .hero__actions .btn { justify-content: center; padding: 1.1rem 1.6rem; font-size: 1rem; }
+  /* Hero */
+  .hero { min-height: 90vh; }
+  .hero h1 { max-width: 100%; font-size: clamp(2.1rem, 9.5vw, 3.2rem); }
+  .hero .lead { font-size: .97rem; max-width: 36ch; }
+  .hero__actions { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .hero__actions .btn { justify-content: center; padding: 1.15rem 1.6rem; font-size: 1rem; }
   .hero__badges { gap: .4rem; }
   .badge { font-size: .65rem; padding: .3rem .55rem; }
   .scroll-cue { display: none; }
 
-  /* Veći CTA gumbi na mobitelu */
-  .btn--lg { padding: 1.1rem 1.6rem; font-size: 1rem; }
+  /* Buttons */
+  .btn--lg { padding: 1.1rem 1.7rem; font-size: 1rem; }
   .cta-band__actions { flex-direction: column; gap: .7rem; }
   .cta-band__actions .btn,
   .nf__actions .btn { width: 100%; justify-content: center; }
 
-  /* Kartice — veći razmak */
-  .vcard__body { padding: 1.2rem 1.3rem 1.4rem; }
+  /* Cards */
+  .vcard__body { padding: 1.3rem 1.4rem 1.5rem; }
+  .vcard__body h3 { font-size: 1.12rem; }
+  .vcard__price { font-size: 1.28rem; }
+
+  /* Steps */
+  .step { padding: 1.6rem 1.4rem 1.4rem; }
 
   /* Footer */
-  .footer__top { grid-template-columns: 1fr; gap: 2.2rem; }
-  .footer__bottom { flex-direction: column; }
+  .footer__top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__bottom { flex-direction: column; gap: .6rem; }
 
-  /* Galerija */
-  .gallery { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  /* Gallery */
+  .gallery { grid-template-columns: 1fr; grid-auto-rows: 210px; }
   .gallery .g-wide { grid-column: span 1; }
 
+  /* Data table */
   .data-row { flex-direction: column; gap: .15rem; }
   .data-row dd { text-align: left; }
 
+  /* Misc */
+  .trust { padding: 2rem 1.4rem; }
+  .cta-band { padding: 2.4rem 1.6rem; }
   .to-top { right: 1rem; bottom: 1rem; }
+  .page-hero { padding-bottom: 2.4rem; }
+  .contact-grid { gap: 1.6rem; }
+  .map-wrap { aspect-ratio: 4/3; min-height: 260px; }
 }
 
 /* ---------- Very small ---------- */
 @media (max-width: 380px) {
   .brand__chip img { height: 26px; }
+  .hero h1 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
+  .vcard__body { padding: 1.1rem 1.2rem 1.3rem; }
 }
 
 /* ---------- Touch / coarse: hide custom cursor ---------- */
@@ -106,4 +137,5 @@ html, body { overflow-x: hidden; }
   }
   .hero__media img { transform: none; }
   .cursor-car { display: none !important; }
+  .vcard__media--ph { animation: none; }
 }
