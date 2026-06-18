@@ -28,15 +28,19 @@ html.intro-active #intro {
   animation: introOut .55s var(--ease, ease) 1.6s forwards;
 }
 
-/* ---- Osnovna slika: minimalni zoom, cijela centrirana ---- */
+/* ---- Osnovna slika: puna širina ekrana, prirodni omjer, centrirana ----
+   Cijela PNG slika se koristi po širini na SVIM rezolucijama. Crni gornji/
+   donji rub slike (#000) klizi izvan okvira i stapa se s #000 pozadinom,
+   pa nema vidljivog ruba ni rezanja motiva (farovi/bubrezi uvijek vidljivi). */
 .intro__photo,
 .intro__lights {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  height: auto;
+  max-width: none;
 }
 
 /* ---- Light-overlay: samo bijeli angel-eyes; jedini sloj koji blica ---- */
