@@ -1,0 +1,72 @@
+/* =========================================================
+   AUTO CENTAR BIMMER — intro.css
+   Kratki cinematic intro: BMW "angel eyes" blinknu 2×,
+   zatim elegantan fade u stranicu. Samo na naslovnici,
+   jednom po sesiji. Prikazuje se ISKLJUČIVO kad inline
+   head-skripta doda klasu .intro-active (no-JS / reduced
+   motion → intro se ne prikazuje).
+   ========================================================= */
+
+#intro { display: none; }
+
+html.intro-active { overflow: hidden; }
+html.intro-active #intro {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #07080a;
+  animation: introOut .55s var(--ease, ease) 1.5s forwards;
+}
+
+/* Twin round headlights — dva klastera po dva prstena */
+.intro__eyes {
+  display: flex;
+  align-items: center;
+  gap: clamp(34px, 9vw, 64px);
+  animation: introEyes 2s var(--ease, ease) forwards;
+}
+.ae-cluster { display: flex; align-items: center; gap: 9px; }
+
+.ae-ring {
+  width: clamp(40px, 11vw, 58px);
+  height: clamp(40px, 11vw, 58px);
+  border-radius: 50%;
+  border: 2.5px solid rgba(224,240,255,.96);
+  box-shadow:
+    0 0 10px rgba(120,190,255,.85),
+    0 0 26px rgba(70,150,255,.55),
+    inset 0 0 9px rgba(120,190,255,.45);
+  opacity: .1;
+  animation: aeBlink 1.5s var(--ease, ease) forwards;
+}
+
+/* Blink 2× pa ostane upaljeno do fade-a */
+@keyframes aeBlink {
+  0%   { opacity: .08; }
+  9%   { opacity: .08; }
+  19%  { opacity: 1; }    /* upali 1 */
+  33%  { opacity: .1; }   /* ugasi 1 */
+  47%  { opacity: 1; }    /* upali 2 */
+  100% { opacity: 1; }    /* drži upaljeno */
+}
+
+/* Suptilan cinematic "približavanje" svjetala */
+@keyframes introEyes {
+  0%   { transform: scale(.92); filter: blur(.4px); }
+  60%  { transform: scale(1); filter: blur(0); }
+  100% { transform: scale(1.04); filter: blur(0); }
+}
+
+/* Elegantan izlaz cijelog overlaya */
+@keyframes introOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Sigurnosna brana: ako netko ima reduce ali je klasa ostala, ugasi animacije */
+@media (prefers-reduced-motion: reduce) {
+  html.intro-active { overflow: auto; }
+  html.intro-active #intro { display: none; }
+}

@@ -202,35 +202,27 @@ button:focus-visible {
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--c-line);
 }
-/* Logo — low-res source; white chip ensures legibility on any bg */
-.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
+/* Logo — low-res source; white chip ensures legibility on any bg.
+   Standalone brand mark (no wordmark) — slightly larger & stronger. */
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
 .brand__chip {
   background: #fff;
-  border-radius: 7px;
-  padding: 5px 9px;
+  border-radius: 9px;
+  padding: 7px 13px;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  box-shadow: 0 1px 6px rgba(0,0,0,.18);
-  transition: box-shadow .2s var(--ease);
+  box-shadow: 0 2px 12px rgba(0,0,0,.28);
+  transition: box-shadow .25s var(--ease), transform .25s var(--ease);
 }
-.brand:hover .brand__chip { box-shadow: 0 2px 10px rgba(0,0,0,.28); }
+.brand:hover .brand__chip { box-shadow: 0 4px 18px rgba(0,0,0,.38); transform: translateY(-1px); }
 .brand__chip img {
-  height: 28px;
+  height: 38px;
   width: auto;
-  max-width: 110px;
+  max-width: 150px;
   display: block;
   image-rendering: -webkit-optimize-contrast;
 }
-.brand__txt {
-  display: none;
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -.01em;
-  font-size: 1rem;
-  color: var(--c-text);
-}
-.brand__txt span { color: var(--c-blue-lt); }
 
 .nav { display: flex; align-items: center; gap: .35rem; }
 .nav a {
@@ -414,6 +406,9 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.4rem;
 }
+/* 3-up varijanta (npr. "Zašto odabrati") — responsive media queries
+   na .feature-grid (učitane kasnije) preuzimaju kontrolu na manjim ekranima. */
+.feature-grid--3 { grid-template-columns: repeat(3, 1fr); }
 .feature {
   background: linear-gradient(180deg, var(--c-bg-3) 0%, #15181d 100%);
   border: 1px solid var(--c-line-soft);
@@ -801,6 +796,42 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
 }
 .map-wrap iframe { width: 100%; height: 100%; border: 0; filter: grayscale(.3) contrast(1.05); }
 
+/* ---------- Premium contact extras (kontakt.html) ---------- */
+.contact-hero-card {
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(0,102,177,.20), transparent 55%),
+    var(--c-bg-3);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: 1.1rem;
+}
+.contact-hero-card__num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4.6vw, 2.6rem);
+  letter-spacing: -.025em;
+  color: var(--c-text);
+  margin: .35rem 0 .5rem;
+  transition: color .2s var(--ease);
+}
+.contact-hero-card__num:hover { color: var(--c-blue-lt); }
+.contact-hero-card__note { font-size: .92rem; margin-bottom: 1.3rem; max-width: 40ch; }
+.contact-hero-card__actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact-cards .info-row__val { overflow-wrap: anywhere; }
+.info-row--wide { grid-column: 1 / -1; }
+
+.contact-map { display: flex; flex-direction: column; gap: 1rem; }
+.contact-map .map-wrap { flex: 1; min-height: 340px; }
+.contact-map__cta { justify-content: center; }
+
 /* ---------- Form (front-end only) ---------- */
 .form-card {
   background: var(--c-bg-3);
@@ -1014,29 +1045,36 @@ body.has-cursor-car .cursor-car { display: block; }
 .cursor-car img {
   width: 25px; height: 63px;
   display: block;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.55));
+  /* Premium ledeno-plavi tint + jasna sjena za čitljivost na tamnoj podlozi */
+  filter:
+    drop-shadow(0 0 5px rgba(47,147,224,.55))
+    drop-shadow(0 5px 12px rgba(0,0,0,.7));
+  transition: filter .3s var(--ease);
 }
-.cursor-car.is-hot {
-  filter: drop-shadow(0 0 8px rgba(47,147,224,.3));
+.cursor-car.is-hot img {
+  /* Jači plavi glow nad interaktivnim elementima */
+  filter:
+    drop-shadow(0 0 9px rgba(47,147,224,.9))
+    drop-shadow(0 5px 12px rgba(0,0,0,.7));
 }
 
-/* Dual tyre track marks — left & right rear wheel, suptilni */
+/* Dual tyre track marks — left & right rear wheel, čišći i vidljiviji */
 .tyre-track {
   position: fixed;
   top: 0; left: 0;
   z-index: 9998;
   pointer-events: none;
-  width: 3px; height: 5px;
-  margin-left: -1.5px; margin-top: -2.5px;
-  border-radius: 2px;
-  background: rgba(100,115,130,.38);
-  will-change: opacity;
-  animation: tyreFade .52s var(--ease) forwards;
+  width: 4px; height: 6px;
+  margin-left: -2px; margin-top: -3px;
+  border-radius: 2.5px;
+  background: rgba(150,168,185,.36);
+  will-change: opacity, transform;
+  animation: tyreFade .6s var(--ease) forwards;
 }
 @keyframes tyreFade {
-  0%   { opacity: .45; }
-  60%  { opacity: .18; }
-  100% { opacity: 0; }
+  0%   { opacity: .5;  transform: scale(1); }
+  55%  { opacity: .26; }
+  100% { opacity: 0;   transform: scale(.55); }
 }
 
 /* When custom cursor active, hide native cursor on interactive zones too */

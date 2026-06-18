@@ -5,11 +5,6 @@
 
 html, body { overflow-x: hidden; }
 
-/* ---- Brand text: show alongside logo chip on desktop ---- */
-@media (min-width: 960px) {
-  .brand__txt { display: inline-block; }
-}
-
 /* ---------- Wide: 4-col grids scale naturally ---------- */
 @media (max-width: 1400px) {
   .vehicle-grid--feature { grid-template-columns: repeat(4, 1fr); }
@@ -113,11 +108,19 @@ html, body { overflow-x: hidden; }
   .page-hero { padding-bottom: 2.4rem; }
   .contact-grid { gap: 1.6rem; }
   .map-wrap { aspect-ratio: 4/3; min-height: 260px; }
+
+  /* Kontakt — praktičan mobilni raspored */
+  .contact-cards { grid-template-columns: 1fr; }
+  .contact-hero-card__actions { flex-direction: column; }
+  .contact-hero-card__actions .btn { width: 100%; justify-content: center; }
+  .contact-map .map-wrap { min-height: 240px; }
+  .contact-map__cta { width: 100%; }
 }
 
 /* ---------- Very small ---------- */
 @media (max-width: 380px) {
-  .brand__chip img { height: 26px; }
+  .brand__chip img { height: 32px; }
+  .brand__chip { padding: 6px 10px; }
   .hero h1 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
   .vcard__body { padding: 1.1rem 1.2rem 1.3rem; }
 }

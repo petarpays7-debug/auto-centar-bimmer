@@ -34,6 +34,32 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/intro.css">
+
+  <!-- Intro gate: prikaži angel-eyes intro samo na prvom ulasku po sesiji.
+       Preskoči na reduced-motion i kad JS ne radi (klasa se tada ne doda). -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try {
+        var reduce = window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) return;
+        if (sessionStorage.getItem("acb_intro")) return;
+        sessionStorage.setItem("acb_intro", "1");
+        d.classList.add("intro-active");
+        /* Sigurnosna brana: otključaj scroll i ukloni overlay čak i ako
+           intro.js zakaže (npr. 404), da se stranica nikad ne zaglavi. */
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            d.classList.remove("intro-active");
+            var n = document.getElementById("intro");
+            if (n && n.parentNode) n.parentNode.removeChild(n);
+          }, 2600);
+        });
+      } catch (e) { /* no-op: intro se jednostavno ne prikaže */ }
+    })();
+  </script>
 
   <!-- Structured data: AutoDealer / LocalBusiness -->
   <script type="application/ld+json">
@@ -76,6 +102,14 @@
 </head>
 <body>
 
+  <!-- ============ INTRO (angel eyes) — samo naslovnica, jednom po sesiji ============ -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro__eyes">
+      <div class="ae-cluster"><span class="ae-ring"></span><span class="ae-ring"></span></div>
+      <div class="ae-cluster"><span class="ae-ring"></span><span class="ae-ring"></span></div>
+    </div>
+  </div>
+
   <!-- ============ HEADER ============ -->
   <header class="header" id="top">
     <div class="header__inner">
@@ -83,7 +117,6 @@
         <span class="brand__chip">
           <img src="autocentar-bimmer-assets/logo-autocentar-bimmer.png" alt="Auto Centar Bimmer logo" width="120" height="30">
         </span>
-        <span class="brand__txt">AC&nbsp;<span>BIMMER</span></span>
       </a>
 
       <nav class="nav" aria-label="Glavna navigacija">
@@ -130,7 +163,6 @@
           <a class="btn btn--ghost btn--lg" href="otkup-vozila.html">Ponudi svoje vozilo</a>
         </div>
         <div class="hero__badges">
-          <span class="badge">Isključivo BMW</span>
           <span class="badge">Prodaja i otkup</span>
           <span class="badge">Bilje · Osijek</span>
           <span class="badge">Odabrana BMW vozila</span>
@@ -173,7 +205,7 @@
           <h2 class="h-lg">Zašto odabrati Auto Centar Bimmer?</h2>
           <p class="lead">Specijalizirana autokuća za one koji znaju što traže. Bez raspršene ponude, bez posrednika.</p>
         </div>
-        <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="feature-grid feature-grid--3">
           <div class="feature reveal">
             <div class="feature__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
             <h3>Fokus na BMW</h3>
@@ -225,7 +257,7 @@
     </section>
 
     <!-- ============ GOOGLE OCJENA ============ -->
-    <section class="section--tight section--alt">
+    <section class="section--tight">
       <div class="container">
         <div class="trust-strip reveal">
           <div class="trust-strip__score" data-countup="4.5">4,5</div>
@@ -343,6 +375,7 @@
   </button>
 
   <!-- Scripts (deferred) -->
+  <script src="assets/js/intro.js" defer></script>
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/inventory.js" defer></script>
   <script src="assets/js/cursor-car.js" defer></script>
