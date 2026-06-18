@@ -102,9 +102,14 @@
 </head>
 <body>
 
-  <!-- ============ INTRO (angel eyes) — samo naslovnica, jednom po sesiji ============ -->
+  <!-- ============ INTRO — samo naslovnica, jednom po sesiji ============ -->
+  <!-- Slika: autocentar-bimmer-assets/intro-bmw.png. Ako nedostaje, onerror
+       prebacuje na CSS "angel eyes" fallback koji jednako blicne 2×. -->
   <div id="intro" aria-hidden="true">
-    <div class="intro__eyes">
+    <img class="intro__img" src="autocentar-bimmer-assets/intro-bmw.png" alt=""
+         draggable="false"
+         onerror="var i=this.closest('#intro'); if(i){i.classList.add('intro--noimg');} this.remove();">
+    <div class="intro__eyes" aria-hidden="true">
       <div class="ae-cluster"><span class="ae-ring"></span><span class="ae-ring"></span></div>
       <div class="ae-cluster"><span class="ae-ring"></span><span class="ae-ring"></span></div>
     </div>
