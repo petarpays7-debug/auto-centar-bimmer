@@ -1,15 +1,11 @@
 /* =========================================================
    AUTO CENTAR BIMMER — intro.css
-   Pravi fullscreen cinematic intro. Postojeća intro slika
-   prekriva cijeli viewport (object-fit: cover). Iznad nje
-   leži transparentni light-overlay (intro-lights.png) koji
-   sadrži ISKLJUČIVO bijele dijelove lijevog i desnog
-   angel-eyesa. Blicaju SAMO ti bijeli dijelovi 2×, dok
-   ostatak fotografije ostaje miran. Zatim fade u stranicu.
-
-   Samo naslovnica, jednom po sesiji. Prikazuje se ISKLJUČIVO
-   kad inline head-skripta doda .intro-active na <html>
-   (no-JS / reduced motion → intro se ne prikazuje).
+   Cinematic intro s JEDNOM slikom: intro-lights.png.
+   Farovi blicnu 2× (samo opacity/brightness/drop-shadow),
+   zatim elegantan fade u stranicu. Samo naslovnica, jednom
+   po sesiji. Prikazuje se ISKLJUČIVO kad inline head-skripta
+   doda .intro-active na <html> (no-JS / reduced motion →
+   intro se ne prikazuje).
    ========================================================= */
 
 #intro { display: none; }
@@ -23,27 +19,18 @@ html.intro-active #intro {
   height: 100vh;
   z-index: 10000;
   overflow: hidden;
-  /* Ista crna kao pozadina slike (#000000) → rubovi se stapaju, bez pravokutnika */
-  background: #000;
+  background: #000;   /* ista crna kao pozadina slike → bez vidljivog ruba */
   animation: introOut .55s var(--ease, ease) 1.6s forwards;
 }
 
-/* ---- Osnovna slika: CIJELA slika preko cijelog ekrana, od ruba do ruba ----
-   object-fit: fill → slika ispuni cijeli viewport (100vw × 100vh). Ništa se
-   NE reže (nema cropa) i nema crnih traka — vidi se kompletan PNG na svim
-   rezolucijama. Light-overlay se rasteže identično pa ostaje poravnat. */
-.intro__photo,
-.intro__lights {
+/* ---- Jedina slika: cijela vidljiva, centrirana, bez rezanja ---- */
+.intro-lights {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
-}
-
-/* ---- Light-overlay: samo bijeli angel-eyes; jedini sloj koji blica ---- */
-.intro__lights {
-  pointer-events: none;
+  object-fit: contain;
+  object-position: center;
   opacity: .7;
   filter: brightness(1);
   will-change: opacity, filter;
@@ -54,52 +41,18 @@ html.intro-active #intro {
 @keyframes introLights {
   0%   { opacity: .7;  filter: brightness(1); }
   12%  { opacity: .7;  filter: brightness(1); }                                            /* mirno */
-  20%  { opacity: 1;   filter: brightness(2.2) drop-shadow(0 0 5px rgba(225,238,255,.55)); } /* blink 1 */
+  20%  { opacity: 1;   filter: brightness(2.2) drop-shadow(0 0 6px rgba(225,238,255,.55)); } /* blink 1 */
   30%  { opacity: .7;  filter: brightness(1); }                                            /* spušta */
   42%  { opacity: .7;  filter: brightness(1); }                                            /* kratka pauza */
-  50%  { opacity: 1;   filter: brightness(2.4) drop-shadow(0 0 6px rgba(212,232,255,.6)); }  /* blink 2 */
-  60%  { opacity: .72; filter: brightness(1.05); }                                         /* natrag na normalu */
-  100% { opacity: .72; filter: brightness(1.05); }
+  50%  { opacity: 1;   filter: brightness(2.4) drop-shadow(0 0 7px rgba(212,232,255,.6)); }  /* blink 2 */
+  60%  { opacity: .75; filter: brightness(1.05); }                                         /* natrag na normalu */
+  100% { opacity: .75; filter: brightness(1.05); }
 }
 
 /* ---- Elegantan izlaz cijelog overlaya ---- */
 @keyframes introOut {
   0%   { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
-}
-
-/* ---- CSS "angel eyes" fallback (ako osnovna slika nedostaje) ---- */
-.intro__eyes { display: none; }
-#intro.intro--noimg { display: grid; place-items: center; }
-#intro.intro--noimg .intro__photo,
-#intro.intro--noimg .intro__lights { display: none; }
-#intro.intro--noimg .intro__eyes {
-  display: flex;
-  align-items: center;
-  gap: clamp(34px, 9vw, 64px);
-}
-.ae-cluster { display: flex; align-items: center; gap: 9px; }
-.ae-ring {
-  width: clamp(40px, 11vw, 58px);
-  height: clamp(40px, 11vw, 58px);
-  border-radius: 50%;
-  border: 2.5px solid rgba(224,240,255,.96);
-  box-shadow:
-    0 0 10px rgba(120,190,255,.85),
-    0 0 26px rgba(70,150,255,.55),
-    inset 0 0 9px rgba(120,190,255,.45);
-  opacity: .1;
-}
-#intro.intro--noimg .ae-ring { animation: aeBlink 1.6s var(--ease, ease) forwards; }
-@keyframes aeBlink {
-  0%   { opacity: .08; }
-  12%  { opacity: .1; }
-  20%  { opacity: 1; }    /* blink 1 */
-  30%  { opacity: .12; }
-  42%  { opacity: .12; }
-  50%  { opacity: 1; }    /* blink 2 */
-  60%  { opacity: .9; }
-  100% { opacity: .9; }
 }
 
 /* ---- Reduced motion: bez introa, bez blokade scrolla ---- */
