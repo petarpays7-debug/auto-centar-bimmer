@@ -1007,6 +1007,14 @@ body.menu-open .mobile-menu { opacity: 1; transform: none; pointer-events: auto;
 }
 .footer__bottom a:hover { color: var(--c-blue-lt); }
 .footer__legal { font-family: var(--font-mono); }
+.footer__legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.3rem;
+  align-items: center;
+}
+.footer__legal-nav a { color: var(--c-text-mute); }
+.footer__legal-nav a:hover { color: var(--c-blue-lt); }
 
 /* ---------- Back to top ---------- */
 .to-top {
